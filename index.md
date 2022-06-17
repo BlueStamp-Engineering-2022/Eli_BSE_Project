@@ -25,4 +25,4 @@ My first milestone was setting up and hooking up the Raspberry Pi and all the ne
 # Starter Project
 
 My starter project was a customizable Arduino project that consisted of an IR breakbeam and a servo motor. 
-[![Starter Project] (https://i3.ytimg.com/vi/yVBOp2GziYg/maxresdefault.jpg)](https://www.youtube.com/watch?v=yVBOp2GziYg "Starter Project"){:target="_blank" rel="noopener"}
+[![Starter Project] (![image](https://user-images.githubusercontent.com/69122710/174345371-3a62341b-28e7-43f3-bd80-5abbd103eb37.png)](https://www.youtube.com/watch?v=yVBOp2GziYg "Starter Project"){:target="_blank" rel="noopener"}
