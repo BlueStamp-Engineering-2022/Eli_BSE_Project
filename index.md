@@ -20,7 +20,7 @@ My final milestone is the increased reliability and accuracy of my robot. I amel
 
 My first milestone was assembling the parts of the robot and make sure that they worked individually. The robot parts consisted of wheels along with the wheel motors, servo, motor driver, and ultrasonic sensor. I had issues with the ultrasonic sensor due to incorrect code as well as issues with downloading the library. 
 
-[![First Milestone](![image][https://res.cloudinary.com/marcomontalbano/image/upload/v1612574117/video_to_markdown/images/youtube--CaCazFBhYKs-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://www.youtube.com/watch?v=CaCazFBhYKs](http://i3.ytimg.com/vi/wvDvka75ShQ/hqdefault.jpg) "First Milestone"){:target="_blank" rel="noopener"}
+[![First Milestone](![image]](https://www.youtube.com/watch?v=CaCazFBhYKs](http://i3.ytimg.com/vi/wvDvka75ShQ/hqdefault.jpg) "First Milestone"){:target="_blank" rel="noopener"}
 # Starter Project
 
 My starter project was a customizable Arduino project that consisted of an IR breakbeam and a servo motor. When the IR breakbeam detects an object like a hand, this info will be sent to the servo where it will move 170 degrees
