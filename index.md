@@ -18,7 +18,7 @@ My final milestone is the increased reliability and accuracy of my robot. I amel
 # First Milestone
   
 
-My first milestone was assembling the parts of the robot and make sure that they worked individually. The robot parts consisted of wheels along with the wheel motors, servo, motor driver, and ultrasonic sensor. I had issues with the ultrasonic sensor due to incorrect code as well as issues with downloading the library. 
+My first milestone was assembling the parts of the robot and make sure that they worked individually. The robot parts consisted of wheels along with the wheel motors, servo, motor driver, and ultrasonic sensor. I had issues with the ultrasonic sensor due to incorrect code as well as issues with downloading the library. The ultrasonic sensor was not printing the values it was supposted to do. After a bit of trial and error, I saw that the way I had wired the ultrasonic sensor and the way I had coded it was incorrect. Once I had that corrected the ultrasonic sensor worked.
 
 [![First Milestone] (![image](http://i3.ytimg.com/vi/wvDvka75ShQ/hqdefault.jpg)](https://www.youtube.com/watch?v=wvDvka75ShQ "First milestone"){:target="_blank" rel="noopener"}
 # Starter Project
