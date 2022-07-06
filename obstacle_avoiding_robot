@@ -1,0 +1,100 @@
+#include "SR04.h"
+#include <Servo.h>
+#define TRIG_PIN 12
+#define ECHO_PIN 11
+SR04 sr04 = SR04(ECHO_PIN,TRIG_PIN);
+long a;
+Servo myservo;  // create servo object to control a servo
+// twelve servo objects can be created on most boards
+int pos = 0;    // variable to store the servo position
+const int LeftMotorForward = 7;
+const int LeftMotorBackward = 6;
+const int RightMotorForward = 4;
+const int RightMotorBackward = 5;
+const int enA = 8;
+const int enB = 10;
+#define maximum_distance 200
+boolean goesForward = false;
+int distance = 100;
+
+void setup() {
+    Serial.begin(9600);
+    pinMode(RightMotorForward, OUTPUT);
+    pinMode(LeftMotorForward, OUTPUT);
+    pinMode(LeftMotorBackward, OUTPUT);
+    pinMode(RightMotorBackward, OUTPUT);
+    pinMode(enA, OUTPUT);
+    pinMode(enB, OUTPUT);
+    //directionControl();
+    delay(1000);
+    //speedControl();
+    delay(1000);
+    myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+}
+
+void loop() {
+   int distanceRight = 0;
+   int distanceLeft = 0;
+   
+   
+  myservo.write(50);
+  delay(100);
+  a = sr04.Distance();
+  delay(100);
+  myservo.write(115);
+  delay(100);
+
+  myservo.write(170);
+  delay(500);
+  a = sr04.Distance();
+  delay(100);
+  myservo.write(115);
+  delay(100);
+  digitalWrite(RightMotorForward, HIGH);
+  digitalWrite(LeftMotorForward, HIGH);
+  
+  digitalWrite(RightMotorBackward, LOW); 
+  digitalWrite(LeftMotorBackward, LOW);
+  
+   if(a <= 20) {
+      Serial.println(a);
+      //stop robot
+      digitalWrite(RightMotorForward, LOW);
+      digitalWrite(LeftMotorForward, LOW);
+      digitalWrite(RightMotorBackward, LOW);
+      digitalWrite(LeftMotorBackward, LOW);
+      delay(100);
+      //move robot backwards
+      //setSpeed(5);
+      digitalWrite(RightMotorForward, LOW);
+      digitalWrite(LeftMotorForward, LOW);
+      digitalWrite(RightMotorBackward, HIGH); 
+      digitalWrite(LeftMotorBackward, HIGH);
+      analogWrite(enA, 70);
+      analogWrite(enB, 70);
+      delay(100);
+      //move robot right
+      //setSpeed(5);
+      digitalWrite(LeftMotorForward, HIGH);
+      digitalWrite(RightMotorBackward, HIGH);
+      digitalWrite(LeftMotorBackward, LOW);
+      digitalWrite(RightMotorForward, LOW);
+      delay(100);
+      digitalWrite(RightMotorForward, LOW);
+      digitalWrite(LeftMotorForward, LOW);
+      digitalWrite(RightMotorBackward, HIGH); 
+      digitalWrite(LeftMotorBackward, HIGH);
+      analogWrite(enA, 70);
+      analogWrite(enB, 70);
+   }  
+   else {
+      //move forward
+      //setSpeed(5);
+      digitalWrite(LeftMotorForward, HIGH);
+      digitalWrite(RightMotorForward, HIGH); 
+      digitalWrite(LeftMotorBackward, LOW);
+      digitalWrite(RightMotorBackward, LOW); 
+      analogWrite(enA, 70);
+      analogWrite(enB, 70);
+   }
+}
