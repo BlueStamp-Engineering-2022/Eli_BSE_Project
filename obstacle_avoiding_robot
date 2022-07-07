@@ -7,12 +7,12 @@ long a;
 Servo myservo;  // create servo object to control a servo
 // twelve servo objects can be created on most boards
 int pos = 0;    // variable to store the servo position
-const int LeftMotorForward = 7;
-const int LeftMotorBackward = 6;
+const int LeftMotorForward = 8;
+const int LeftMotorBackward = 7;
 const int RightMotorForward = 4;
 const int RightMotorBackward = 5;
-const int enA = 8;
-const int enB = 10;
+const int enA = 6;
+const int enB = 3;
 #define maximum_distance 200
 boolean goesForward = false;
 int distance = 100;
@@ -45,9 +45,9 @@ void loop() {
   delay(100);
 
   myservo.write(170);
-  delay(500);
-  a = sr04.Distance();
   delay(100);
+  a = sr04.Distance();
+  delay(20);
   myservo.write(115);
   delay(100);
   digitalWrite(RightMotorForward, HIGH);
@@ -55,37 +55,39 @@ void loop() {
   
   digitalWrite(RightMotorBackward, LOW); 
   digitalWrite(LeftMotorBackward, LOW);
+  Serial.println(a);
   
-   if(a <= 20) {
+   if(a <= 50) {
       Serial.println(a);
       //stop robot
       digitalWrite(RightMotorForward, LOW);
       digitalWrite(LeftMotorForward, LOW);
       digitalWrite(RightMotorBackward, LOW);
       digitalWrite(LeftMotorBackward, LOW);
-      delay(100);
+      delay(50);
       //move robot backwards
       //setSpeed(5);
       digitalWrite(RightMotorForward, LOW);
       digitalWrite(LeftMotorForward, LOW);
       digitalWrite(RightMotorBackward, HIGH); 
       digitalWrite(LeftMotorBackward, HIGH);
-      analogWrite(enA, 70);
-      analogWrite(enB, 70);
-      delay(100);
+      analogWrite(enA, 123);
+      analogWrite(enB, 123);
+      delay(50);
       //move robot right
       //setSpeed(5);
       digitalWrite(LeftMotorForward, HIGH);
       digitalWrite(RightMotorBackward, HIGH);
       digitalWrite(LeftMotorBackward, LOW);
       digitalWrite(RightMotorForward, LOW);
-      delay(100);
+      delay(50);
       digitalWrite(RightMotorForward, LOW);
       digitalWrite(LeftMotorForward, LOW);
       digitalWrite(RightMotorBackward, HIGH); 
       digitalWrite(LeftMotorBackward, HIGH);
-      analogWrite(enA, 70);
-      analogWrite(enB, 70);
+      analogWrite(enA, 123);
+      analogWrite(enB, 123);
+      delay(50);
    }  
    else {
       //move forward
@@ -94,7 +96,11 @@ void loop() {
       digitalWrite(RightMotorForward, HIGH); 
       digitalWrite(LeftMotorBackward, LOW);
       digitalWrite(RightMotorBackward, LOW); 
-      analogWrite(enA, 70);
-      analogWrite(enB, 70);
+      analogWrite(enA, 123);
+      analogWrite(enB, 123);
+      delay(50);
    }
 }
+
+
+
