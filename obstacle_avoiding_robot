@@ -15,92 +15,79 @@ const int enA = 6;
 const int enB = 3;
 #define maximum_distance 200
 boolean goesForward = false;
-int distance = 100;
+//int distance = 100;
 
 void setup() {
-    Serial.begin(9600);
-    pinMode(RightMotorForward, OUTPUT);
-    pinMode(LeftMotorForward, OUTPUT);
-    pinMode(LeftMotorBackward, OUTPUT);
-    pinMode(RightMotorBackward, OUTPUT);
-    pinMode(enA, OUTPUT);
-    pinMode(enB, OUTPUT);
-    //directionControl();
-    delay(1000);
-    //speedControl();
-    delay(1000);
-    myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+  Serial.begin(9600);
+  pinMode(RightMotorForward, OUTPUT);
+  pinMode(LeftMotorForward, OUTPUT);
+  pinMode(LeftMotorBackward, OUTPUT);
+  pinMode(RightMotorBackward, OUTPUT);
+  pinMode(enA, OUTPUT);
+  pinMode(enB, OUTPUT);
 }
 
 void loop() {
-   int distanceRight = 0;
-   int distanceLeft = 0;
-   
-   
-  myservo.write(50);
+  turnXDeg();
   delay(100);
-  a = sr04.Distance();
-  delay(100);
-  myservo.write(115);
-  delay(100);
-
-  myservo.write(170);
-  delay(100);
-  a = sr04.Distance();
-  delay(20);
-  myservo.write(115);
-  delay(100);
-  digitalWrite(RightMotorForward, HIGH);
-  digitalWrite(LeftMotorForward, HIGH);
-  
-  digitalWrite(RightMotorBackward, LOW); 
-  digitalWrite(LeftMotorBackward, LOW);
-  Serial.println(a);
-  
-   if(a <= 50) {
-      Serial.println(a);
-      //stop robot
-      digitalWrite(RightMotorForward, LOW);
-      digitalWrite(LeftMotorForward, LOW);
-      digitalWrite(RightMotorBackward, LOW);
-      digitalWrite(LeftMotorBackward, LOW);
-      delay(50);
-      //move robot backwards
-      //setSpeed(5);
-      digitalWrite(RightMotorForward, LOW);
-      digitalWrite(LeftMotorForward, LOW);
-      digitalWrite(RightMotorBackward, HIGH); 
-      digitalWrite(LeftMotorBackward, HIGH);
-      analogWrite(enA, 123);
-      analogWrite(enB, 123);
-      delay(50);
-      //move robot right
-      //setSpeed(5);
-      digitalWrite(LeftMotorForward, HIGH);
-      digitalWrite(RightMotorBackward, HIGH);
-      digitalWrite(LeftMotorBackward, LOW);
-      digitalWrite(RightMotorForward, LOW);
-      delay(50);
-      digitalWrite(RightMotorForward, LOW);
-      digitalWrite(LeftMotorForward, LOW);
-      digitalWrite(RightMotorBackward, HIGH); 
-      digitalWrite(LeftMotorBackward, HIGH);
-      analogWrite(enA, 123);
-      analogWrite(enB, 123);
-      delay(50);
-   }  
-   else {
-      //move forward
-      //setSpeed(5);
-      digitalWrite(LeftMotorForward, HIGH);
-      digitalWrite(RightMotorForward, HIGH); 
-      digitalWrite(LeftMotorBackward, LOW);
-      digitalWrite(RightMotorBackward, LOW); 
-      analogWrite(enA, 123);
-      analogWrite(enB, 123);
-      delay(50);
-   }
+  getDist();
 }
 
+void turnXDeg() {
+  myservo.attach(9);
+  myservo.write(0);
+  delay(100);
+  a = sr04.Distance();
+  delay(100);
+  myservo.write(180);
+  delay(100);
+  myservo.write(180);
+  delay(100);
+  //myservo.detach(9);
+}
 
+void getDist() {
+    if(a <= 50) {
+      stopRobot();
+      delay(100);
+      wheel90Deg();
+      delay(100);
+      turnXDeg();
+    }
+    else {
+      delay(100);
+      goForward();
+      delay(100);
+      turnXDeg();
+    }
+}
 
+void stopRobot() {
+  analogWrite(enA, 0);
+  analogWrite(enB, 0);
+  digitalWrite(RightMotorForward, LOW);
+  digitalWrite(LeftMotorForward, LOW);
+  digitalWrite(RightMotorBackward, LOW);
+  digitalWrite(LeftMotorBackward, LOW);
+  delay(100);
+}
+
+void wheel90Deg() {
+  analogWrite(enA, 123);
+  analogWrite(enB, 123);
+  digitalWrite(LeftMotorForward, HIGH);
+  digitalWrite(RightMotorBackward, HIGH);
+  digitalWrite(LeftMotorBackward, LOW);
+  digitalWrite(RightMotorForward, LOW);
+  delay(100);
+}
+
+void goForward() {
+  analogWrite(enA, 123);
+  analogWrite(enB, 123);
+  digitalWrite(LeftMotorForward, HIGH);
+  digitalWrite(RightMotorForward, HIGH); 
+  digitalWrite(LeftMotorBackward, LOW);
+  digitalWrite(RightMotorBackward, LOW); 
+  delay(100);
+}
