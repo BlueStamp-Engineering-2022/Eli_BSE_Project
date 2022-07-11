@@ -35,31 +35,53 @@ void loop() {
 
 void turnXDeg() {
   myservo.attach(9);
-  myservo.write(0);
+  myservo.write(90);
   delay(100);
   a = sr04.Distance();
+  Serial.println(a);
   delay(100);
-  myservo.write(180);
+  myservo.write(130);
   delay(100);
-  myservo.write(180);
+  a = sr04.Distance();
+  Serial.println(a);
+  delay(100);
+  myservo.write(60);
+  delay(100);
+  a = sr04.Distance();
+  Serial.println(a);
+  delay(100);
+  myservo.write(90);
+  delay(100);
+  a = sr04.Distance();
+  Serial.println(a);
+  delay(100);
+  myservo.write(160);
+  delay(100);
+  a = sr04.Distance();
+  Serial.println(a);
   delay(100);
   //myservo.detach(9);
 }
 
 void getDist() {
-    if(a <= 50) {
+    if(a <= 45) {
       stopRobot();
       delay(100);
       wheel90Deg();
       delay(100);
-      turnXDeg();
+      //turnXDeg();
     }
     else {
-      delay(100);
-      goForward();
-      delay(100);
-      turnXDeg();
+      tooFar();
     }
+}
+
+void tooFar() {
+  goForward();
+  delay(100);
+  turnXDeg();
+  delay(100);
+  getDist();
 }
 
 void stopRobot() {
@@ -73,8 +95,8 @@ void stopRobot() {
 }
 
 void wheel90Deg() {
-  analogWrite(enA, 123);
-  analogWrite(enB, 123);
+  analogWrite(enA, 145);
+  analogWrite(enB, 145);
   digitalWrite(LeftMotorForward, HIGH);
   digitalWrite(RightMotorBackward, HIGH);
   digitalWrite(LeftMotorBackward, LOW);
@@ -89,5 +111,5 @@ void goForward() {
   digitalWrite(RightMotorForward, HIGH); 
   digitalWrite(LeftMotorBackward, LOW);
   digitalWrite(RightMotorBackward, LOW); 
-  delay(100);
+  delay(60);
 }
