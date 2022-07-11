@@ -1,5 +1,5 @@
 ﻿# Obstacle avoiding robot
-This will serve as a brief description of your project. Limit this to three sentences because it can become overly long at that point. This copy should draw the user in and make she/him want to read more.
+This robot avoids obstacles by detection to an ultrasonic sensor, which can detect objects through sound waves. Once an object is detected 20 cm away, this information will be send to a motor driver which will make the wheels turn thus avoiding the obstacle. If an object is not detected, the robot will continue to move forward.
 
 | Eli Mitra | Monta Vista High | Mechanical/Software/Electrical engineering | Incoming Senior |
 |:--:|:--:|:--:|:--:|
