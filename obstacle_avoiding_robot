@@ -3,7 +3,8 @@
 #define TRIG_PIN 12
 #define ECHO_PIN 11
 SR04 sr04 = SR04(ECHO_PIN,TRIG_PIN);
-long a;
+long dist_left, dist_right;
+bool right_close, left_close;
 Servo myservo;  // create servo object to control a servo
 // twelve servo objects can be created on most boards
 int pos = 0;    // variable to store the servo position
@@ -15,6 +16,7 @@ const int enA = 6;
 const int enB = 3;
 #define maximum_distance 200
 boolean goesForward = false;
+
 //int distance = 100;
 
 void setup() {
@@ -25,63 +27,82 @@ void setup() {
   pinMode(RightMotorBackward, OUTPUT);
   pinMode(enA, OUTPUT);
   pinMode(enB, OUTPUT);
+  myservo.attach(9);
 }
 
 void loop() {
-  turnXDeg();
-  delay(100);
-  getDist();
-}
-
-void turnXDeg() {
-  myservo.attach(9);
-  myservo.write(90);
-  delay(100);
-  a = sr04.Distance();
-  Serial.println(a);
-  delay(100);
-  myservo.write(130);
-  delay(100);
-  a = sr04.Distance();
-  Serial.println(a);
-  delay(100);
-  myservo.write(60);
-  delay(100);
-  a = sr04.Distance();
-  Serial.println(a);
-  delay(100);
-  myservo.write(90);
-  delay(100);
-  a = sr04.Distance();
-  Serial.println(a);
-  delay(100);
-  myservo.write(160);
-  delay(100);
-  a = sr04.Distance();
-  Serial.println(a);
-  delay(100);
-  //myservo.detach(9);
-}
-
-void getDist() {
-    if(a <= 45) {
-      stopRobot();
-      delay(100);
-      wheel90Deg();
-      delay(100);
-      //turnXDeg();
-    }
-    else {
-      tooFar();
-    }
-}
-
-void tooFar() {
   goForward();
   delay(100);
-  turnXDeg();
+  lookLeft();
+  delay(50);
+  getLeftDist();
+  delay(50);
+  lookRight();
+  delay(50);
+  getRightDist();
+}
+
+void lookLeft() {
+  myservo.write(180);
   delay(100);
-  getDist();
+  dist_left = sr04.Distance();
+  delay(100);
+  getLeftDist();
+}
+
+void lookRight() {
+  Serial.println(dist_right);
+  myservo.write(-180);
+  delay(100);
+  dist_right = sr04.Distance();
+  delay(100);
+  getRightDist();
+}
+
+void getLeftDist() {
+    long old_val_left = dist_left;
+    long new_val_left = sr04.Distance();
+    if(dist_left <= 20) {
+      wheel90DegRight();
+      delay(100);
+      lookLeft();
+      lookRight();
+    }
+    else {
+      goForward();
+      delay(100);
+    }
+    if(new_val_left > old_val_left) {
+      wheel90DegLeft();
+      delay(200);
+      stopRobot();
+      delay(100);
+      goForward();
+    }
+}
+
+void getRightDist() {
+    long old_val_right = dist_right;
+    long new_val_right = sr04.Distance();
+    if(dist_right <= 45) {
+      wheel90DegLeft();
+      delay(100);
+      stopRobot();
+      delay(100);
+      lookLeft();
+      lookRight();
+    }
+    else {
+      goForward();
+      delay(100);
+    }
+    if(new_val_right > old_val_right) {
+      wheel90DegRight();
+      delay(200);
+      stopRobot();
+      delay(100);
+      goForward();
+    }
 }
 
 void stopRobot() {
@@ -94,13 +115,23 @@ void stopRobot() {
   delay(100);
 }
 
-void wheel90Deg() {
+void wheel90DegRight() {
   analogWrite(enA, 145);
   analogWrite(enB, 145);
   digitalWrite(LeftMotorForward, HIGH);
   digitalWrite(RightMotorBackward, HIGH);
   digitalWrite(LeftMotorBackward, LOW);
   digitalWrite(RightMotorForward, LOW);
+  delay(100);
+}
+
+void wheel90DegLeft() {
+  analogWrite(enA, 145);
+  analogWrite(enB, 145);
+  digitalWrite(LeftMotorForward, LOW);
+  digitalWrite(RightMotorBackward, LOW);
+  digitalWrite(LeftMotorBackward, HIGH);
+  digitalWrite(RightMotorForward, HIGH);
   delay(100);
 }
 
@@ -111,5 +142,5 @@ void goForward() {
   digitalWrite(RightMotorForward, HIGH); 
   digitalWrite(LeftMotorBackward, LOW);
   digitalWrite(RightMotorBackward, LOW); 
-  delay(60);
+  delay(100);
 }
