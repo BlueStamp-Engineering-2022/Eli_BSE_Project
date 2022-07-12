@@ -14,7 +14,7 @@ My final milestone is the increased reliability and accuracy of my robot. I amel
 # Second Milestone
 My second milestone was syncing up the ultrasonic sensor with the wheels. The robot parts consisted of wheels along with the wheel motors, servo, motor driver, and ultrasonic sensor. I had issues with the motor driver due to improper wiring of it. Since I had no issues with the syncing of the ultrasonic sensor, the wheels were able to react accordingly to the signal from the ultrasonic sensor.
 
-[![Second Milestone](https://i3.ytimg.com/vi/SMfc3sqW4As/maxresdefault.jpg)](https://www.youtube.com/watch?v=SMfc3sqW4As) "Second Milestone"){:target="_blank" rel="noopener"}
+[![Second Milestone](https://i3.ytimg.com/vi/SMfc3sqW4As/maxresdefault.jpg)](https://www.youtube.com/watch?v=SMfc3sqW4As){:target="_blank" rel="noopener"}
 # First Milestone
   
 
