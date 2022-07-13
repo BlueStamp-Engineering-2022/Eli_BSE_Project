@@ -1,37 +1,29 @@
-## Welcome to GitHub Pages
+# Obstacle avoiding robot
+This robot avoids obstacles by detection to an ultrasonic sensor, which can detect objects through sound waves. Once an object is detected 20 cm away, this information will be send to a motor driver which will make the wheels turn thus avoiding the obstacle. If an object is not detected, the robot will continue to move forward.
 
-You can use the [editor on GitHub](https://github.com/BlueStamp-Engineering-2022/Eli_BSE_Project/edit/gh-pages/docs/index.md) to maintain and preview the content for your website in Markdown files.
+| Eli Mitra | Monta Vista High | Mechanical engineering | Incoming Senior |
+|:--:|:--:|:--:|:--:|
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+![Headstone Image](![Screen Shot 2022-07-13 at 9 40 58 AM](https://user-images.githubusercontent.com/69122710/178787027-1a4b4926-12e6-4ac9-abe9-018458be392d.png)
+)
+  
+# Final Milestone
+My final milestone was making some changes to how the robot responded to the obstacles in the code. Although the robot avoided obstacles, it did not go back to its original direction, and I wanted to make sure the robot did that. I had some issues initially making that code concise because the computer did not understand. Once I strategized and did some more pseudocode, I was able to go about this more methodically, and I was able to achieve the desired result of the robot.
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+[![Final Milestone](https://res.cloudinary.com/marcomontalbano/image/upload/v1612573869/video_to_markdown/images/youtube--F7M7imOVGug-c05b58ac6eb4c4700831b2b3070cd403.jpg )](https://www.youtube.com/watch?v=F7M7imOVGug&feature=emb_logo "Final Milestone"){:target="_blank" rel="noopener"}
 
-```markdown
-Syntax highlighted code block
+# Second Milestone
+My second milestone was syncing up the ultrasonic sensor with the wheels. The robot parts consisted of wheels along with the wheel motors, servo, motor driver, and ultrasonic sensor. I had issues with the motor driver due to improper wiring of it. Since I had no issues with the syncing of the ultrasonic sensor, the wheels were able to react accordingly to the signal from the ultrasonic sensor.
 
-# Header 1
-## Header 2
-### Header 3
+[![Second Milestone](https://i3.ytimg.com/vi/SMfc3sqW4As/maxresdefault.jpg)](https://www.youtube.com/watch?v=SMfc3sqW4As){:target="_blank" rel="noopener"}
+# First Milestone
+  
 
-- Bulleted
-- List
+My first milestone was assembling the parts of the robot and make sure that they worked individually. The robot parts consisted of wheels along with the wheel motors, servo, motor driver, and ultrasonic sensor. I had issues with the ultrasonic sensor due to incorrect code as well as issues with downloading the library. The ultrasonic sensor was not printing the values it was supposted to do. After a bit of trial and error, I saw that the way I had wired the ultrasonic sensor and the way I had coded it was incorrect. Once I had that corrected the ultrasonic sensor worked.
 
-1. Numbered
-2. List
+[![First Milestone](http://i3.ytimg.com/vi/wvDvka75ShQ/hqdefault.jpg)](https://www.youtube.com/watch?v=wvDvka75ShQ "First milestone"){:target="_blank" rel="noopener"}
+# Starter Project
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/BlueStamp-Engineering-2022/Eli_BSE_Project/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+My starter project was a customizable Arduino project that consisted of an IR breakbeam and a servo motor. When the IR breakbeam detects an object like a hand, this info will be sent to the servo where it will move 170 degrees
+[![Starter Project](https://user-images.githubusercontent.com/69122710/174345371-3a62341b-28e7-43f3-bd80-5abbd103eb37.png)](https://www.youtube.com/watch?v=yVBOp2GziYg "Starter Project"){:target="_blank" rel="noopener"}
