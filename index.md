@@ -4,6 +4,160 @@ This robot avoids obstacles by detection to an ultrasonic sensor, which can dete
 | Eli Mitra | Monta Vista High | Mechanical engineering | Incoming Senior |
 |:--:|:--:|:--:|:--:|
 
+<details>
+  <summary>
+    #include "SR04.h"
+#include <Servo.h>
+#define TRIG_PIN 12
+#define ECHO_PIN 11
+SR04 sr04 = SR04(ECHO_PIN,TRIG_PIN);
+long dist_left, dist_right;
+bool right_close, left_close;
+Servo myservo;  // create servo object to control a servo
+// twelve servo objects can be created on most boards
+int pos = 0;    // variable to store the servo position
+const int LeftMotorForward = 8;
+const int LeftMotorBackward = 7;
+const int RightMotorForward = 4;
+const int RightMotorBackward = 5;
+const int enA = 6;
+const int enB = 3;
+#define maximum_distance 200
+boolean goesForward = false;
+
+//int distance = 100;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(RightMotorForward, OUTPUT);
+  pinMode(LeftMotorForward, OUTPUT);
+  pinMode(LeftMotorBackward, OUTPUT);
+  pinMode(RightMotorBackward, OUTPUT);
+  pinMode(enA, OUTPUT);
+  pinMode(enB, OUTPUT);
+  myservo.attach(9);
+}
+
+void loop() {
+  goForward();
+  delay(100);
+  lookLeft();
+  delay(50);
+  getLeftDist();
+  delay(50);
+  lookRight();
+  delay(50);
+  getRightDist();
+}
+
+void lookLeft() {
+  myservo.write(180);
+  delay(100);
+  dist_left = sr04.Distance();
+  delay(100);
+  getLeftDist();
+}
+
+void lookRight() {
+  Serial.println(dist_right);
+  myservo.write(-180);
+  delay(100);
+  dist_right = sr04.Distance();
+  delay(100);
+  getRightDist();
+}
+
+void getLeftDist() {
+    long old_val_left = dist_left;
+    long new_val_left = sr04.Distance();
+    if(dist_left <= 20) {
+      stopRobot();
+      delay(50);
+      wheel90DegRight();
+      delay(200);
+      lookLeft();
+      lookRight();
+    }
+    else {
+      goForward();
+      delay(100);
+    }
+    if(new_val_left > old_val_left) {
+      wheel90DegLeft();
+      delay(200);
+      stopRobot();
+      delay(100);
+      goForward();
+    }
+}
+
+void getRightDist() {
+    long old_val_right = dist_right;
+    long new_val_right = sr04.Distance();
+    if(dist_right <= 20) {
+      stopRobot();
+      delay(50);
+      wheel90DegLeft();
+      delay(200);
+      lookLeft();
+      lookRight();
+    }
+    else {
+      goForward();
+      delay(100);
+    }
+    if(new_val_right > old_val_right) {
+      wheel90DegRight();
+      delay(200);
+      stopRobot();
+      delay(100);
+      goForward();
+    }
+}
+
+void stopRobot() {
+  analogWrite(enA, 0);
+  analogWrite(enB, 0);
+  digitalWrite(RightMotorForward, LOW);
+  digitalWrite(LeftMotorForward, LOW);
+  digitalWrite(RightMotorBackward, LOW);
+  digitalWrite(LeftMotorBackward, LOW);
+  delay(100);
+}
+
+void wheel90DegRight() {
+  analogWrite(enA, 200);
+  analogWrite(enB, 200);
+  digitalWrite(LeftMotorForward, HIGH);
+  digitalWrite(RightMotorBackward, HIGH);
+  digitalWrite(LeftMotorBackward, LOW);
+  digitalWrite(RightMotorForward, LOW);
+  delay(100);
+}
+
+void wheel90DegLeft() {
+  analogWrite(enA, 200);
+  analogWrite(enB, 200);
+  digitalWrite(LeftMotorForward, LOW);
+  digitalWrite(RightMotorBackward, LOW);
+  digitalWrite(LeftMotorBackward, HIGH);
+  digitalWrite(RightMotorForward, HIGH);
+  delay(100);
+}
+
+void goForward() {
+  analogWrite(enA, 123);
+  analogWrite(enB, 123);
+  digitalWrite(LeftMotorForward, HIGH);
+  digitalWrite(RightMotorForward, HIGH); 
+  digitalWrite(LeftMotorBackward, LOW);
+  digitalWrite(RightMotorBackward, LOW); 
+  delay(100);
+}
+  </summary>
+  details
+</details>
+
 ![Headstone Image](![Screen Shot 2022-07-13 at 9 40 58 AM](https://user-images.githubusercontent.com/69122710/178787027-1a4b4926-12e6-4ac9-abe9-018458be392d.png)
 )
   
