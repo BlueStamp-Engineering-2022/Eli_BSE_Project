@@ -43,17 +43,26 @@ void loop() {
 }
 
 void lookLeft() {
-  myservo.write(180);
+  myservo.write(0);
+  dist_left = sr04.Distance();
   delay(100);
+  myservo.write(90);
+  dist_left = sr04.Distance();
+  delay(100);
+  myservo.write(150);
   dist_left = sr04.Distance();
   delay(100);
   getLeftDist();
 }
 
 void lookRight() {
-  Serial.println(dist_right);
-  myservo.write(-180);
+  myservo.write(0);
+  dist_right = sr04.Distance();
   delay(100);
+  myservo.write(-90);
+  dist_right = sr04.Distance();
+  delay(100);
+  myservo.write(-150);
   dist_right = sr04.Distance();
   delay(100);
   getRightDist();
@@ -63,8 +72,10 @@ void getLeftDist() {
     long old_val_left = dist_left;
     long new_val_left = sr04.Distance();
     if(dist_left <= 20) {
+      stopRobot();
+      delay(50);
       wheel90DegRight();
-      delay(100);
+      delay(200);
       lookLeft();
       lookRight();
     }
@@ -84,11 +95,11 @@ void getLeftDist() {
 void getRightDist() {
     long old_val_right = dist_right;
     long new_val_right = sr04.Distance();
-    if(dist_right <= 45) {
-      wheel90DegLeft();
-      delay(100);
+    if(dist_right <= 20) {
       stopRobot();
-      delay(100);
+      delay(50);
+      wheel90DegLeft();
+      delay(200);
       lookLeft();
       lookRight();
     }
@@ -116,8 +127,8 @@ void stopRobot() {
 }
 
 void wheel90DegRight() {
-  analogWrite(enA, 145);
-  analogWrite(enB, 145);
+  analogWrite(enA, 200);
+  analogWrite(enB, 200);
   digitalWrite(LeftMotorForward, HIGH);
   digitalWrite(RightMotorBackward, HIGH);
   digitalWrite(LeftMotorBackward, LOW);
@@ -126,8 +137,8 @@ void wheel90DegRight() {
 }
 
 void wheel90DegLeft() {
-  analogWrite(enA, 145);
-  analogWrite(enB, 145);
+  analogWrite(enA, 200);
+  analogWrite(enB, 200);
   digitalWrite(LeftMotorForward, LOW);
   digitalWrite(RightMotorBackward, LOW);
   digitalWrite(LeftMotorBackward, HIGH);
