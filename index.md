@@ -1,7 +1,7 @@
 ﻿# Obstacle avoiding robot
 This robot avoids obstacles by detection to an ultrasonic sensor, which can detect objects through sound waves. Once an object is detected 20 cm away, this information will be send to a motor driver which will make the wheels turn thus avoiding the obstacle. If an object is not detected, the robot will continue to move forward.
 
-| Eli Mitra | Monta Vista High | Mechanical engineering | Incoming Senior |
+| Eli | Monta Vista High | Mechanical engineering | Incoming Senior |
 |:--:|:--:|:--:|:--:|
 
 ![Headstone Image](![Screen Shot 2022-07-13 at 9 40 58 AM](https://user-images.githubusercontent.com/69122710/178787027-1a4b4926-12e6-4ac9-abe9-018458be392d.png)
