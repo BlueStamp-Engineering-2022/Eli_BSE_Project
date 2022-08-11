@@ -2,7 +2,8 @@
 #include <Servo.h>
 #define TRIG_PIN 12
 #define ECHO_PIN 11
-#define ROBOT_DELAY 500
+#define ROBOT_DELAY 100
+#define MIN_DIST 40
 SR04 sr04 = SR04(ECHO_PIN,TRIG_PIN);
 long dist_left, dist_right, dist_forward;
 bool right_close, left_close;
@@ -40,19 +41,36 @@ void loop() {
   delay(ROBOT_DELAY);
   dist_forward = getForwardDist();
   Serial.print(forward + dist_forward);
-  if(dist_forward < 20) {
+  if(dist_forward < MIN_DIST) {
       stopRobot();
+      delay(ROBOT_DELAY);
       dist_left = getLeftDist();
       Serial.print(left + dist_left);
-      ///delay(ROBOT_DELAY);
+      delay(ROBOT_DELAY);
       dist_right = getRightDist();
       Serial.print(right + dist_right);
-      if(dist_left > 20) {
+      if(dist_left > MIN_DIST) {
           turnLeft();
-        } else if(dist_right > 20) {
+          delay(ROBOT_DELAY);
+          getForwardDist();
+        } else if(dist_right > MIN_DIST) {
           turnRight();
+          delay(ROBOT_DELAY);
+          getForwardDist();
         } else {
           goBackward();
+          dist_left = getLeftDist();
+          delay(ROBOT_DELAY);
+          dist_right = getRightDist();
+          if(dist_left > MIN_DIST) {
+              turnLeft();
+              delay(ROBOT_DELAY);
+              getForwardDist();
+          } else if(dist_right > MIN_DIST) {
+              turnRight();
+              delay(ROBOT_DELAY);
+              getForwardDist();
+          }
         }
     } 
 }
@@ -64,13 +82,13 @@ long getLeftDist() {
 }
 
 long getForwardDist() {
-    //myservo.write(0);
+    myservo.write(90);
     delay(ROBOT_DELAY);
     return sr04.Distance();
 }
 
 long getRightDist() {
-    myservo.write(-180);
+    myservo.write(0);
     delay(ROBOT_DELAY);
     return sr04.Distance();
 }
@@ -85,42 +103,42 @@ void stopRobot() {
   delay(ROBOT_DELAY);
 }
 
+void moveRobot() {
+  for (int i = 123; i >= 80; --i) {
+    analogWrite(enA, i);
+    analogWrite(enB, i);
+    delay(20);
+  }
+}
+
 void turnRight() {
-  analogWrite(enA, 90);
-  analogWrite(enB, 90);
   digitalWrite(LeftMotorForward, HIGH);
   digitalWrite(RightMotorBackward, HIGH);
   digitalWrite(LeftMotorBackward, LOW);
   digitalWrite(RightMotorForward, LOW);
-  delay(ROBOT_DELAY);
+  moveRobot();
 }
 
 void turnLeft() {
-  analogWrite(enA, 90);
-  analogWrite(enB, 90);
   digitalWrite(LeftMotorForward, LOW);
   digitalWrite(RightMotorBackward, LOW);
   digitalWrite(LeftMotorBackward, HIGH);
   digitalWrite(RightMotorForward, HIGH);
-  delay(ROBOT_DELAY);
+  moveRobot();
 }
 
 void goBackward() {
-  analogWrite(enA, 90);
-  analogWrite(enB, 90);
   digitalWrite(LeftMotorForward, LOW);
   digitalWrite(RightMotorForward, LOW); 
   digitalWrite(LeftMotorBackward, HIGH);
   digitalWrite(RightMotorBackward, HIGH); 
-  delay(ROBOT_DELAY);
+  moveRobot();
 }
 
 void goForward() {
-  analogWrite(enA, 90);
-  analogWrite(enB, 90);
   digitalWrite(LeftMotorForward, HIGH);
   digitalWrite(RightMotorForward, HIGH); 
   digitalWrite(LeftMotorBackward, LOW);
   digitalWrite(RightMotorBackward, LOW); 
-  delay(ROBOT_DELAY);
+  moveRobot();
 }
