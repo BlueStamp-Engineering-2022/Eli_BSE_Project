@@ -4,7 +4,7 @@ This robot avoids obstacles by detection to an ultrasonic sensor, which can dete
 | Eli | Monta Vista High | Mechanical engineering | Incoming Senior |
 |:--:|:--:|:--:|:--:|
 
-![Headstone Image](![Screen Shot 2022-07-13 at 9 40 58 AM](https://user-images.githubusercontent.com/69122710/178787027-1a4b4926-12e6-4ac9-abe9-018458be392d.png){:target="_blank" rel="noopener"}
+![Headstone Image](https://user-images.githubusercontent.com/69122710/178787027-1a4b4926-12e6-4ac9-abe9-018458be392d.png){:target="_blank" rel="noopener"}
 )
   
 # Final Milestone
