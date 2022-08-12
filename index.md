@@ -1,11 +1,11 @@
-﻿# Obstacle avoiding robot
+# Obstacle avoiding robot
 This robot avoids obstacles by detection to an ultrasonic sensor, which can detect objects through sound waves. Once an object is detected 20 cm away, this information will be send to a motor driver which will make the wheels turn thus avoiding the obstacle. If an object is not detected, the robot will continue to move forward.
 
 | Eli | Monta Vista High | Mechanical engineering | Incoming Senior |
 |:--:|:--:|:--:|:--:|
 
 ![Headstone Image](https://user-images.githubusercontent.com/69122710/178787027-1a4b4926-12e6-4ac9-abe9-018458be392d.png){:target="_blank" rel="noopener"}
-)
+
   
 # Final Milestone
 My final milestone was making some changes to how the robot responded to the obstacles in the code. Although the robot avoided obstacles, it did not go back to its original direction, and I wanted to make sure the robot did that. I had some issues initially making that code concise because the computer did not understand. Once I strategized and did some more pseudocode, I was able to go about this more methodically, and I was able to achieve the desired result of the robot.
